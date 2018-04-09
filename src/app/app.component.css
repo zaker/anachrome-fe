@@ -1,3 +1,8 @@
-.div {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 250 250'%3E%3Cpath fill='%230f0' d='M125 30v22.2-.1V230l78.9-43.7 14.2-123.1L125 30z'/%3E%3Cpath fill='%23dd0031' d='M125 29.9v22.2-.1 177.9l-78.9-43.7L31.9 63.1z'/%3E%3Cpath d='M125 52.1l-37.5 84.2h-41v16.1h33.8L74 166.2h-18v16.4h32.4l12.5-30.2h18v-16.1h-11.3L125 94.5l17.3 41.8H131v16.1h18l12.5 30.2h32.3v-16.4H176l-6.2-13.8h33.8v-16.1h-41L125 52z'/%3E%3C/svg%3E");
-}
+.dark-primary-color    { background: #455A64; }
+.default-primary-color { background: #607D8B; }
+.light-primary-color   { background: #CFD8DC; }
+.text-primary-color    { color: #FFFFFF; }
+.accent-color          { background: #7C4DFF; }
+.primary-text-color    { color: #212121; }
+.secondary-text-color  { color: #757575; }
+.divider-color         { border-color: #BDBDBD; }
