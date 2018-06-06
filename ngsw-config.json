@@ -7,7 +7,7 @@
       "files": [
         "/favicon.ico",
         "/index.html",
-        "/*.bundle.css",
+        "src/*.bundle.css",
         "/*.bundle.js",
         "/*.chunk.js"
       ]
@@ -18,7 +18,7 @@
     "updateMode": "prefetch",
     "resources": {
       "files": [
-        "/assets/**"
+        "src/assets/**"
       ]
     }
   }]
