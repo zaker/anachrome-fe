@@ -16,7 +16,6 @@
                         "main": "src/main.ts",
                         "tsConfig": "src/tsconfig.app.json",
                         "polyfills": "src/polyfills.ts",
-                        "subresourceIntegrity": true,
                         "assets": [
                             "src/assets",
                             "src/favicon.ico"
@@ -38,6 +37,7 @@
                             "vendorChunk": false,
                             "buildOptimizer": true,
                             "serviceWorker": true,
+                            "subresourceIntegrity": true,
                             "fileReplacements": [{
                                 "replace": "src/environments/environment.ts",
                                 "with": "src/environments/environment.prod.ts"
@@ -47,6 +47,7 @@
                 },
                 "serve": {
                     "builder": "@angular-devkit/build-angular:dev-server",
+                    
                     "options": {
                         "browserTarget": "anachrome:build"
                     },

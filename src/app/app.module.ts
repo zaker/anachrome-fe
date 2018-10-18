@@ -8,9 +8,6 @@ import { AppComponent } from './app.component';
 import { AppMaterialsModule } from './app.materials.module';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 
-
-
-
 @NgModule({
   declarations: [
     AppComponent,
