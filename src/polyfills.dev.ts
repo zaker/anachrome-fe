@@ -18,6 +18,8 @@
  * BROWSER POLYFILLS
  */
 
+import './polyfills';
+
 /** IE9, IE10 and IE11 requires all of the following polyfills. **/
 // import 'core-js/es6/symbol';
 // import 'core-js/es6/object';
@@ -43,7 +45,7 @@
 
 /** Evergreen browsers require these. **/
 // Used for reflect-metadata in JIT. If you use AOT (and only Angular decorators), you can remove.
-// import 'core-js/es7/reflect';
+import 'core-js/es7/reflect';
 
 
 /**
@@ -57,7 +59,7 @@
 /***************************************************************************************************
  * Zone JS is required by Angular itself.
  */
-import 'zone.js/dist/zone';  // Included with Angular CLI.
+// import 'zone.js/dist/zone';  // Included with Angular CLI.
 
 
 
