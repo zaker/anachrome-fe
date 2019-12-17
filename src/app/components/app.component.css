@@ -1,1 +1,36 @@
+.sidebar {
+  grid-area: sidebar;
+}
 
+.content {
+  grid-area: content;
+  position: relative;
+}
+
+.header {
+  grid-area: header;
+  height: 100px;
+}
+
+.footer {
+  grid-area: footer;
+  height: 100px;
+}
+
+.wrapper {
+  display: grid;
+  flex: 1 1 auto;
+  grid-template-areas:
+    "header  header  header"
+    "sidebar content content"
+    "footer  footer  footer";
+  color: #444;
+}
+
+
+.box {
+  background-color: #444;
+  color: #fff;
+
+  font-size: 150%;
+}

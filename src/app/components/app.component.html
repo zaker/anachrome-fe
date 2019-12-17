@@ -1,10 +1,14 @@
-<div class=" basic-container">
-  <app-toolbar></app-toolbar>
-  <div style="text-align:center">
-
-
+<div class="wrapper">
+  <div class="box header">
+    <app-toolbar [appName]="title"></app-toolbar>
   </div>
+  <div class="box sidebar">SIDEBAR
+    <br />
+    <button id='btn' (click)='ApiFetch()'>Click Me ! </button>
+  </div>
+  <div class="box content">Content
+    <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
+    <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
+  </div>
+  <div class="box footer">Footer</div>
 </div>
-
-
-<button id='btn' (click)='ApiFetch()'>Click Me ! </button>
