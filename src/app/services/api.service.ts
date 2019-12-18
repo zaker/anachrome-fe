@@ -1,18 +1,18 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
+import {environment} from '../../environments/environment'
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   /**
    * getInfo
  :Observable<string>  */
   public getInfo(): Observable<string> {
-    return this.http.get<string>('https://localhost:8443/info');
+    return this.http.get<string>(environment.api_address);
   }
 }
