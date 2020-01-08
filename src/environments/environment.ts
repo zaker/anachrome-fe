@@ -4,11 +4,11 @@
 // but if you do
 // `ng build --env=prod` then `environment.prod.ts` will be used instead.
 // The list of which env maps to which file can be found in `.angular-cli.json`.
-const metaApiUrl = document.head.querySelector("[property~=apiUrl][content]")
-                       .getAttribute("content");
+
 
 
 export const environment = {
   production: false,
-  api_address: metaApiUrl,
+  api_address: document.head.querySelector("[property~=apiUrl][content]")
+                   .getAttribute("content"),
 };
