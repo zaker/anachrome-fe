@@ -17,5 +17,5 @@ export class AppComponent implements OnInit {
     console.log(this.appService.hello());
   }
 
-  public async ApiFetch() { console.log(await this.api.getInfo().toPromise()); }
+  public async ApiFetch() { console.log(await this.api.fetch("/tw", {})); }
 }

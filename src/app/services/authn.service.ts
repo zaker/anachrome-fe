@@ -1,19 +1,72 @@
 import {Injectable} from '@angular/core';
+import {ApiService} from './api.service';
 
 
 @Injectable({providedIn: 'root'})
 export class AuthnService {
-  constructor() {}
+  constructor(private apiService: ApiService) {}
   /**
    * auth
    */
   public async auth(): Promise<void> {
-    const request = await fetch("...");
-    const response = navigator.credentials.create(await request.json());
-    await fetch("...", {method: "POST", body: JSON.stringify(response)});
+    try {
+      const creds = await this.fetchServerCredentials();
+      await this.verifyCredentialsWithServer(creds)
+    } catch (error) {
+      console.error(error)
+    }
   }
 
-  private async verifyAssertionWithServer(assertedCredential: any):
+  private async fetchServerCredentials(): Promise<any> {
+    // prepare form post data
+    var formData = new FormData();
+    // formData.append('username', username);
+
+    // send to server for registering
+    let makeAssertionOptions;
+    try {
+      var res = await this.apiService.fetch('/assertionOptions', {
+        method: 'POST',  // or 'PUT'
+        body: formData,  // data can be `string` or {object}!
+        headers: {'Accept': 'application/json'}
+      });
+
+      makeAssertionOptions = await res.json();
+    } catch (e) {
+      console.error("Request to server failed", e);
+    }
+
+    console.log("Assertion Options Object", makeAssertionOptions);
+
+    // show options error to user
+    if (makeAssertionOptions.status !== "ok") {
+      console.log("Error creating assertion options");
+      console.log(makeAssertionOptions.errorMessage);
+      console.error(makeAssertionOptions.errorMessage);
+      return;
+    }
+
+    // todo: switch this to coercebase64
+    const challenge =
+        makeAssertionOptions.challenge.replace(/-/g, "+").replace(/_/g, "/");
+    makeAssertionOptions.challenge =
+        Uint8Array.from(atob(challenge), c => c.charCodeAt(0));
+
+    // fix escaping. Change this to coerce
+    makeAssertionOptions.allowCredentials.forEach(function(listItem) {
+      var fixedId = listItem.id.replace(/\_/g, "/").replace(/\-/g, "+");
+      listItem.id = Uint8Array.from(atob(fixedId), c => c.charCodeAt(0));
+    });
+
+    console.log("Assertion options", makeAssertionOptions);
+
+
+
+    // ask browser for credentials (browser will ask connected authenticators)
+    return await navigator.credentials.get({publicKey: makeAssertionOptions})
+  }
+
+  private async verifyCredentialsWithServer(assertedCredential: any):
       Promise<void> {
     let authData =
         new Uint8Array(assertedCredential.response.authenticatorData);
@@ -35,7 +88,7 @@ export class AuthnService {
       }
     };
 
-    let response;
+    let response: any;
     try {
       let res = await fetch("/makeAssertion", {
         method: 'POST',              // or 'PUT'
@@ -56,9 +109,8 @@ export class AuthnService {
 
     // show error
     if (response.status !== "ok") {
-      console.log("Error doing assertion");
-      console.log(response.errorMessage);
-      // showErrorAlert(response.errorMessage);
+      console.error("Error doing assertion", response.errorMessage);
+
       return;
     }
   }
