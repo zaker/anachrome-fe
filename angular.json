@@ -74,7 +74,7 @@
           "options": {
             "browserTarget": "anachrome:build",
             "aot": false,
-            "port": 14200
+            "port": 4200
           },
           "configurations": {
             "production": {

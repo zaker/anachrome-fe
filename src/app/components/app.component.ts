@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { AppService } from '../services/app.service';
-import { ApiService } from '../services/api.service';
+import {Component, OnInit} from '@angular/core';
+import {AppService} from '../services/app.service';
+import {ApiService} from '../services/api.service';
 
 @Component({
   selector: 'app-root',
@@ -8,20 +8,14 @@ import { ApiService } from '../services/api.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-
   title = 'Anachrome';
 
-  constructor(private appService: AppService, private api: ApiService) {
+  constructor(private appService: AppService, private api: ApiService) {}
 
-  }
 
   public async ngOnInit(): Promise<void> {
     console.log(this.appService.hello());
   }
 
-  public async ApiFetch() {
-    console.log(
-      await this.api.getInfo().toPromise()
-    );
-  }
+  public async ApiFetch() { console.log(await this.api.getInfo().toPromise()); }
 }
