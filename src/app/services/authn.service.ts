@@ -1,10 +1,10 @@
-import {Injectable} from '@angular/core';
-import {ApiService} from './api.service';
+import { Injectable } from '@angular/core';
+import { ApiService } from './api.service';
 
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class AuthnService {
-  constructor(private apiService: ApiService) {}
+  constructor(private apiService: ApiService) { }
   /**
    * auth
    */
@@ -23,12 +23,12 @@ export class AuthnService {
     // formData.append('username', username);
 
     // send to server for registering
-    let makeAssertionOptions;
+    let makeAssertionOptions: { status: string; errorMessage: any; challenge: Uint8Array; allowCredentials: any[]; };
     try {
       var res = await this.apiService.fetch('/assertionOptions', {
         method: 'POST',  // or 'PUT'
         body: formData,  // data can be `string` or {object}!
-        headers: {'Accept': 'application/json'}
+        headers: { 'Accept': 'application/json' }
       });
 
       makeAssertionOptions = await res.json();
@@ -48,12 +48,12 @@ export class AuthnService {
 
     // todo: switch this to coercebase64
     const challenge =
-        makeAssertionOptions.challenge.replace(/-/g, "+").replace(/_/g, "/");
+      (makeAssertionOptions.challenge.toString()).replace(/-/g, "+").replace(/_/g, "/");
     makeAssertionOptions.challenge =
-        Uint8Array.from(atob(challenge), c => c.charCodeAt(0));
+      Uint8Array.from(atob(challenge), c => c.charCodeAt(0));
 
     // fix escaping. Change this to coerce
-    makeAssertionOptions.allowCredentials.forEach(function(listItem) {
+    makeAssertionOptions.allowCredentials.forEach(function (listItem) {
       var fixedId = listItem.id.replace(/\_/g, "/").replace(/\-/g, "+");
       listItem.id = Uint8Array.from(atob(fixedId), c => c.charCodeAt(0));
     });
@@ -63,15 +63,15 @@ export class AuthnService {
 
 
     // ask browser for credentials (browser will ask connected authenticators)
-    return await navigator.credentials.get({publicKey: makeAssertionOptions})
+    return await navigator.credentials.get({ publicKey: makeAssertionOptions })
   }
 
   private async verifyCredentialsWithServer(assertedCredential: any):
-      Promise<void> {
+    Promise<void> {
     let authData =
-        new Uint8Array(assertedCredential.response.authenticatorData);
+      new Uint8Array(assertedCredential.response.authenticatorData);
     let clientDataJSON =
-        new Uint8Array(assertedCredential.response.clientDataJSON);
+      new Uint8Array(assertedCredential.response.clientDataJSON);
     let rawId = new Uint8Array(assertedCredential.rawId);
     let sig = new Uint8Array(assertedCredential.response.signature);
     let userHandle = new Uint8Array(assertedCredential.response.userHandle);
