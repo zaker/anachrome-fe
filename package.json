@@ -54,6 +54,7 @@
     "typescript": "^3.7.5"
   },
   "resolutions": {
-    "serialize-javascript": "^2.1.1"
+    "serialize-javascript": "^2.1.1",
+    "minimist": ">=1.2.3"
   }
 }
