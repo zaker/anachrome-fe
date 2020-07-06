@@ -14,4 +14,3 @@ RUN ng b --prod
 FROM busybox as deployer
 COPY --from=builder /src/dist /dist
 RUN mkdir /out
-ENTRYPOINT [ "mv", "/dist", "/out"]
