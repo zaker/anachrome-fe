@@ -5,12 +5,13 @@ COPY package-lock.json .
 COPY package.json .
 
 RUN npm install
-RUN npm install -g @angular/cli
+
+ENV PATH=$PATH:/src/node_modules/.bin
 COPY . .
 
 RUN ng b --prod
 
-FROM alpine as deployer
-COPY --from=builder /src/dist /src/dist
-
-CMD ["mkdir -p /tmp/anachrome-fe && cp /src/dist /tmp/anachrome-fe"]
+FROM busybox as deployer
+COPY --from=builder /src/dist /dist
+RUN mkdir /out
+ENTRYPOINT [ "mv", "/dist", "/out"]
