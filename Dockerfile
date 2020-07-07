@@ -11,6 +11,12 @@ COPY . .
 
 RUN ng b --prod
 
-FROM busybox as deployer
+FROM hayd/alpine-deno:1.0.0
+
 COPY --from=builder /src/dist /dist
-RUN mkdir /out
+WORKDIR /dist
+
+# Prefer not to run as root.
+USER deno
+EXPOSE 4500
+CMD ["run","--allow-net", "--allow-read","https://deno.land/std/http/file_server.ts","-p","4500"]
