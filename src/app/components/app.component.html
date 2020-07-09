@@ -1,14 +1,11 @@
-<div class="wrapper">
-  <div class="box header">
-    <app-toolbar [appName]="title"></app-toolbar>
-  </div>
-  <div class="box sidebar">SIDEBAR
-    <br />
-    <button id='btn' (click)='ApiFetch()'>Click Me ! </button>
-  </div>
-  <div class="box content">
-    <br><br>
-    <app-blog></app-blog>
-  </div>
-  <div class="box footer">Footer</div>
+<app-toolbar class="header" [appName]="title"></app-toolbar>
+<div class="sidebar">
+  <p>SIDEBAR</p>
+  <button id='btn' (click)='ApiFetch()'>Click Me ! </button>
+</div>
+<div class="content">
+  <app-blog></app-blog>
+</div>
+<div class="footer">
+  <p>Footer</p>
 </div>

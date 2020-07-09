@@ -1,3 +1,5 @@
 <div class="wrapper">
-  <p>Hello {{blogTitle}}</p>
+  <li *ngFor="let post of blogPosts; index as i; first as isFirst">
+    {{i+1}}/{{blogPosts.length}}. {{post.title}} - {{post.path}} <span *ngIf="isFirst">default</span>
+  </li>
 </div>

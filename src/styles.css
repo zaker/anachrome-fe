@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
-
+@import '~normalize.css';
 @import '~@angular/material/prebuilt-themes/purple-green.css';
+
 
 .mat-app-background {
   object-fit: fill;
@@ -8,10 +9,51 @@
   margin: 0;
 }
 
-body .group:after {
+/* body .group:after {
   visibility: hidden;
   display: block;
   content: "";
   clear: both;
   height: 0;
+} */
+
+
+#app {
+  display: grid;
+  grid-template-areas:
+    "header  header"
+    "sidebar content"
+    "footer  footer";
+  grid-template-rows: 4rem 1fr;
+  grid-template-columns: 16rem 1fr;
+  color: #fff;
+  height: 100vh;
+  background-color: #444;
+}
+
+.sidebar {
+  padding-top: 2rem;
+  grid-area: sidebar;
+  background-color: #3d3d3d;
+
+  border-right: 1px solid var(--default-border-color);
+}
+
+.content {
+  grid-area: content;
+  overflow-y: auto;
+  background-color: #2d2d2d;
+}
+
+.header {
+  /* background: var(--white); */
+  grid-area: header;
+  border-bottom: 1px solid var(--default-border-color);
+  align-content: center;
+}
+
+.footer {
+  grid-area: footer;
+  position: relative;
+  height: 100px;
 }
