@@ -19,7 +19,7 @@ const CurrentUserForProfile = gql`
  })
  export class BlogComponent implements OnInit, OnDestroy {
   loading: boolean;
-  currentBlog: any;
+  blogPosts: {title:string,path:string}[];
   blogTitle:string = "foofoo";
 
   private querySubscription: Subscription;
@@ -33,7 +33,8 @@ const CurrentUserForProfile = gql`
       .valueChanges
       .subscribe(({ data, loading }) => {
         this.loading = loading;
-        this.currentBlog = data.currentBlog;
+        console.log(data)
+        this.blogPosts = data.blogs;
       });
   }
 
