@@ -45,6 +45,12 @@
   background-color: #2d2d2d;
 }
 
+.content-header {
+  grid-area: content;
+  overflow-y: auto;
+  background-color: #2d2d2d;
+}
+
 .header {
   /* background: var(--white); */
   grid-area: header;
@@ -54,6 +60,7 @@
 
 .footer {
   grid-area: footer;
-  position: relative;
-  height: 100px;
+  border-top: 1px solid var(--default-border-color);
+  align-content: center;
+  height: 0.75rem;
 }
