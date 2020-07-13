@@ -13,6 +13,7 @@ import { environment } from '../environments/environment';
 import { ApolloModule, APOLLO_OPTIONS } from "apollo-angular";
 import { HttpLinkModule, HttpLink } from "apollo-angular-link-http";
 import { InMemoryCache } from "apollo-cache-inmemory";
+import { MarkdownModule } from 'ngx-markdown';
 
 @NgModule({
   declarations: [AppComponent, BlogComponent, ToolbarComponent],
@@ -26,6 +27,7 @@ import { InMemoryCache } from "apollo-cache-inmemory";
     AppMaterialsModule,
     MatNativeDateModule,
     ReactiveFormsModule,
+    MarkdownModule.forRoot(),
     ServiceWorkerModule.register('ngsw-worker.js',
       { enabled: environment.production }),
   ],

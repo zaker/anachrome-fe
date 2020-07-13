@@ -25,8 +25,10 @@
 
     <mat-sidenav-content>
       <div *ngIf="blogPost">
-        <p>{{ blogPost.title }}</p>
-        <p>{{ blogPost.content }}</p>
+        <h1>{{ blogPost.title }}</h1>
+        <markdown [data]="blogPost.content" (ready)="blogReady()">
+      
+        </markdown>
       </div>
     </mat-sidenav-content>
   </mat-sidenav-container>

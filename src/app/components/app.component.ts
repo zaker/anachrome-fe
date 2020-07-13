@@ -37,6 +37,7 @@ export class AppComponent implements OnInit, OnDestroy {
   blogSubscription: Subscription;
   loading: boolean;
   blogPostSubscription: Subscription;
+  loadingBlog  :boolean;
 
   constructor(
     changeDetectorRef: ChangeDetectorRef,
@@ -74,12 +75,15 @@ export class AppComponent implements OnInit, OnDestroy {
         },
       })
       .valueChanges.subscribe(({ data, loading }) => {
-        this.loading = loading;
+        this.loadingBlog = loading;
         console.log(data);
         this.blogPost = data.blog;
       });
   }
 
+  blogReady():void{
+    this.loadingBlog =false;
+  }
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
     this.blogSubscription.unsubscribe();

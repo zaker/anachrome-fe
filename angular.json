@@ -4,6 +4,7 @@
   "newProjectRoot": "projects",
   "projects": {
     "anachrome": {
+      
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -34,7 +35,9 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/marked/lib/marked.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -138,5 +141,5 @@
       }
     }
   },
-  "defaultProject": "anachrome"
+  "defaultProject": "anachrome"  
 }
