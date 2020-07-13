@@ -1,21 +1,88 @@
-import {Component, OnInit} from '@angular/core';
-import {AppService} from '../services/app.service';
-import {ApiService} from '../services/api.service';
+import { Component, ChangeDetectorRef, OnDestroy, OnInit } from "@angular/core";
+import { MediaMatcher } from "@angular/cdk/layout";
+import gql from "graphql-tag";
+import { Apollo } from "apollo-angular";
+import { Subscription } from "rxjs";
+
+const GetAllBlogPosts = gql`
+  query {
+    blogs {
+      title
+      path
+    }
+  }
+`;
+
+const CurrentBlogPost = gql`
+  query  blog($path:String!){
+    blog(path: $path) {
+      title
+      content
+    }
+  }
+`;
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: "app-root",
+  templateUrl: "./app.component.html",
+  styleUrls: ["./app.component.css"],
 })
-export class AppComponent implements OnInit {
-  title = 'Anachrome';
+export class AppComponent implements OnInit, OnDestroy {
+  title = "Anachrome";
 
-  constructor(private appService: AppService, private api: ApiService) {}
+  blogPosts: { title: string; path: string }[];
+  blogPost: { title: string; content: string };
+  mobileQuery: MediaQueryList;
+  private _mobileQueryListener: () => void;
+  blogSubscription: Subscription;
+  loading: boolean;
+  blogPostSubscription: Subscription;
 
-
-  public async ngOnInit(): Promise<void> {
-    console.log(this.appService.hello());
+  constructor(
+    changeDetectorRef: ChangeDetectorRef,
+    media: MediaMatcher,
+    private apollo: Apollo
+  ) {
+    this.mobileQuery = media.matchMedia("(max-width: 600px)");
+    this._mobileQueryListener = () => changeDetectorRef.detectChanges();
+    this.mobileQuery.addListener(this._mobileQueryListener);
   }
 
-  public async ApiFetch() { console.log(await this.api.fetch("/tw", {})); }
+  ngOnInit() {
+    this.blogSubscription = this.apollo
+      .watchQuery<any>({
+        query: GetAllBlogPosts,
+      })
+      .valueChanges.subscribe(({ data, loading }) => {
+        this.loading = loading;
+        console.log(data);
+        this.blogPosts = data.blogs;
+
+        if (this.blogPosts && this.blogPosts.length > 0) {
+          this.setCurrentBlogPost(this.blogPosts[0].path);
+        }
+      });
+  }
+
+  setCurrentBlogPost(path: string): void {
+    console.log(path)
+    this.apollo
+      .watchQuery<any>({
+        query: CurrentBlogPost,
+        variables: {
+          path: path,
+        },
+      })
+      .valueChanges.subscribe(({ data, loading }) => {
+        this.loading = loading;
+        console.log(data);
+        this.blogPost = data.blog;
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.mobileQuery.removeListener(this._mobileQueryListener);
+    this.blogSubscription.unsubscribe();
+    this.blogPostSubscription.unsubscribe();
+  }
 }

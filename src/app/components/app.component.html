@@ -1,11 +1,33 @@
-<app-toolbar class="header" [appName]="title"></app-toolbar>
-<div class="sidebar">
-  <p>SIDEBAR</p>
-  <button id='btn' (click)='ApiFetch()'>Click Me ! </button>
-</div>
-<div class="content">
-  <app-blog></app-blog>
-</div>
-<div class="footer">
-  <p>Footer</p>
+<div class="app-container" [class.app-is-mobile]="mobileQuery.matches">
+  <app-toolbar class="app-toolbar" [appName]="title"></app-toolbar>
+  <mat-sidenav-container
+    class="app-sidenav-container"
+    [style.marginTop.px]="mobileQuery.matches ? 56 : 0"
+  >
+    <mat-sidenav
+      [mode]="mobileQuery.matches ? 'over' : 'side'"
+      [fixedInViewport]="mobileQuery.matches"
+      fixedTopGap="56"
+      opened
+    >
+      <mat-nav-list>
+        <a
+          mat-list-item
+          [routerLink]="['.']"
+          [routerLink]="blogPost.path"
+          routerLinkActive="active"
+          *ngFor="let blogPost of blogPosts"
+          (click)="setCurrentBlogPost(blogPost.path)"
+          >{{ blogPost.title }}</a
+        >
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <div *ngIf="blogPost">
+        <p>{{ blogPost.title }}</p>
+        <p>{{ blogPost.content }}</p>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
 </div>

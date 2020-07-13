@@ -47,7 +47,7 @@
               "namedChunks": false,
               "aot": true,
               "extractLicenses": true,
-              "vendorChunk": false,
+              "vendorChunk": true,
               "buildOptimizer": true,
               "serviceWorker": true,
               "subresourceIntegrity": true,
@@ -74,6 +74,8 @@
           "options": {
             "browserTarget": "anachrome:build",
             "aot": false,
+            "optimization": false,
+            "sourceMap": true,
             "port": 14200
           },
           "configurations": {
