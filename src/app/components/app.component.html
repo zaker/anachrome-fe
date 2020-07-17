@@ -5,6 +5,7 @@
     [style.marginTop.px]="mobileQuery.matches ? 56 : 0"
   >
     <mat-sidenav
+      id="snav"
       [mode]="mobileQuery.matches ? 'over' : 'side'"
       [fixedInViewport]="mobileQuery.matches"
       fixedTopGap="56"
@@ -24,9 +25,7 @@
     <mat-sidenav-content>
       <div *ngIf="blogPost">
         <h1>{{ blogPost.title }}</h1>
-        <markdown [data]="blogPost.content" (ready)="blogReady()">
-      
-        </markdown>
+        <markdown [data]="blogPost.content" (ready)="blogReady()"> </markdown>
       </div>
     </mat-sidenav-content>
   </mat-sidenav-container>

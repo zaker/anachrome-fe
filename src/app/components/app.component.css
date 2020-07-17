@@ -11,9 +11,12 @@
 .app-is-mobile .app-toolbar {
   position: fixed;
   /* Make sure the toolbar will stay on top of the content as it scrolls past. */
-  z-index: 2;
+  /* z-index: 2; */
 }
 
+#snav{
+  width: 200px;
+}
 h1.app-name {
   margin-left: 8px;
 }
