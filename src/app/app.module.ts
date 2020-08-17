@@ -1,3 +1,6 @@
+import {ApolloModule, APOLLO_OPTIONS} from 'apollo-angular';
+import {HttpLinkModule, HttpLink} from 'apollo-angular/http';
+import {InMemoryCache} from '@apollo/client/core';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -10,9 +13,9 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { BlogComponent } from './components/blog/blog.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
-import { ApolloModule, APOLLO_OPTIONS } from "apollo-angular";
-import { HttpLinkModule, HttpLink } from "apollo-angular-link-http";
-import { InMemoryCache } from "apollo-cache-inmemory";
+
+
+
 import { MarkdownModule } from 'ngx-markdown';
 
 @NgModule({

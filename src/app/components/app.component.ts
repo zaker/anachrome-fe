@@ -1,7 +1,8 @@
+import {gql, Apollo} from 'apollo-angular';
 import { Component, ChangeDetectorRef, OnDestroy, OnInit } from "@angular/core";
 import { MediaMatcher } from "@angular/cdk/layout";
-import gql from "graphql-tag";
-import { Apollo } from "apollo-angular";
+
+
 import { Subscription } from "rxjs";
 
 const GetAllBlogPosts = gql`
