@@ -9,7 +9,7 @@ const CurrentUserForProfile = gql`
   query  {
     blogs {
       title
-      path
+      id
     }
   }
 `;
@@ -20,7 +20,7 @@ const CurrentUserForProfile = gql`
  })
  export class BlogComponent implements OnInit, OnDestroy {
   loading: boolean;
-  blogPosts: {title:string,path:string}[];
+  blogPosts: {title:string,id:string}[];
   blogPost: {title:string,content:string};
   blogTitle:string = "foofoo";
 

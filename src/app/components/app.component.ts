@@ -9,16 +9,21 @@ const GetAllBlogPosts = gql`
   query {
     blogs {
       title
-      path
+      id
     }
   }
 `;
 
 const CurrentBlogPost = gql`
-  query  blog($path:String!){
-    blog(path: $path) {
-      title
+  query  blog($id:String!){
+    blog(id: $id) {
       content
+      meta{
+        title
+        id
+        published
+        updated
+      }
     }
   }
 `;
@@ -31,8 +36,9 @@ const CurrentBlogPost = gql`
 export class AppComponent implements OnInit, OnDestroy {
   title = "Anachrome";
 
-  blogPosts: { title: string; path: string }[];
-  blogPost: { title: string; content: string };
+
+  blogPosts: { title: string; id: string }[];
+  blogPost: { meta: {id:string; title: string; published:Date; updated:Date}; content: string };
   mobileQuery: MediaQueryList;
   private _mobileQueryListener: () => void;
   blogSubscription: Subscription;
@@ -61,18 +67,18 @@ export class AppComponent implements OnInit, OnDestroy {
         this.blogPosts = data.blogs;
 
         if (this.blogPosts && this.blogPosts.length > 0) {
-          this.setCurrentBlogPost(this.blogPosts[0].path);
+          this.setCurrentBlogPost(this.blogPosts[0].id);
         }
       });
   }
 
-  setCurrentBlogPost(path: string): void {
-    console.log(path)
+  setCurrentBlogPost(id: string): void {
+    console.log(id)
     this.apollo
       .watchQuery<any>({
         query: CurrentBlogPost,
         variables: {
-          path: path,
+          id: id,
         },
       })
       .valueChanges.subscribe(({ data, loading }) => {

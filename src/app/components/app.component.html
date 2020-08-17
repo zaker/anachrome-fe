@@ -16,7 +16,7 @@
           mat-list-item
           routerLinkActive="active"
           *ngFor="let blogPost of blogPosts"
-          (click)="setCurrentBlogPost(blogPost.path)"
+          (click)="setCurrentBlogPost(blogPost.id)"
           >{{ blogPost.title }}</a
         >
       </mat-nav-list>

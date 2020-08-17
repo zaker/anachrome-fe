@@ -1,6 +1,4 @@
-import {ApolloModule, APOLLO_OPTIONS} from 'apollo-angular';
-import {HttpLinkModule, HttpLink} from 'apollo-angular/http';
-import {InMemoryCache} from '@apollo/client/core';
+import { InMemoryCache } from '@apollo/client/core';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -17,6 +15,7 @@ import { environment } from '../environments/environment';
 
 
 import { MarkdownModule } from 'ngx-markdown';
+import { GraphQLModule } from './graphql.module';
 
 @NgModule({
   declarations: [AppComponent, BlogComponent, ToolbarComponent],
@@ -25,8 +24,7 @@ import { MarkdownModule } from 'ngx-markdown';
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
-    ApolloModule,
-    HttpLinkModule,
+    GraphQLModule,
     AppMaterialsModule,
     MatNativeDateModule,
     ReactiveFormsModule,
@@ -34,18 +32,7 @@ import { MarkdownModule } from 'ngx-markdown';
     ServiceWorkerModule.register('ngsw-worker.js',
       { enabled: environment.production }),
   ],
-  providers: [{
-    provide: APOLLO_OPTIONS,
-    useFactory: (httpLink: HttpLink) => {
-      return {
-        cache: new InMemoryCache(),
-        link: httpLink.create({
-          uri: "https://anachro.me/api/gql"
-        })
-      }
-    },
-    deps: [HttpLink]
-  }],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {
