@@ -8,6 +8,7 @@ RUN npm install
 
 ENV PATH=$PATH:/src/node_modules/.bin
 COPY . .
+RUN rm -rf /src/dist
 
 RUN ng b --prod
 
