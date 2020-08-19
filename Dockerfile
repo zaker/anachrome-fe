@@ -11,7 +11,7 @@ COPY . .
 
 RUN ng b --prod
 
-FROM hayd/alpine-deno:1.0.0
+FROM hayd/alpine-deno:1.3.0
 
 COPY --from=builder /src/dist /dist
 WORKDIR /dist

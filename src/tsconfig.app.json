@@ -7,10 +7,11 @@
     "types": []
   },
   "angularCompilerOptions": {
-    "enableIvy": true
+    "fullTemplateTypeCheck": true
   },
   "exclude": [
     "test.ts",
-    "**/*.spec.ts"
+    "**/*.spec.ts",
+    "polyfills.dev.ts"
   ]
 }
