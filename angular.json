@@ -37,7 +37,11 @@
             ],
             "scripts": [
               "node_modules/marked/lib/marked.js"
-            ]
+            ],
+            "allowedCommonJsDependencies": [
+              "graphql-tag",
+              "zen-observable"
+           ]
           },
           "configurations": {
             "production": {
