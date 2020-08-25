@@ -12,12 +12,8 @@ RUN rm -rf /src/dist
 
 RUN ng b --prod
 
-FROM hayd/alpine-deno:1.3.0
+FROM zaker/http-fileserver:v0.0.2
 
-COPY --from=builder /src/dist /dist
-WORKDIR /dist
+COPY --from=builder /src/dist /web
+WORKDIR /web
 
-# Prefer not to run as root.
-USER deno
-EXPOSE 4500
-CMD ["run","--allow-net", "--allow-read","https://deno.land/std/http/file_server.ts","-p","4500"]
