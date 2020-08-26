@@ -26,15 +26,16 @@
     "@angular/pwa": "^0.1000.6",
     "@angular/router": "10.0.9",
     "@angular/service-worker": "10.0.9",
+    "@apollo/client": "^3.0.0",
     "apollo-angular": "^2.0.3",
     "core-js": "^3.6.5",
     "graphql": "^15.0.0",
     "ngx-markdown": "^10.1.0",
     "normalize.css": "^8.0.1",
+    "prismjs": "^1.21.0",
     "rxjs": "^6.6.2",
     "tslib": "^2.0.1",
-    "zone.js": "^0.10.3",
-    "@apollo/client": "^3.0.0"
+    "zone.js": "^0.10.3"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.1000.6",
