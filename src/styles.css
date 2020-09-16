@@ -8,52 +8,21 @@
   margin: 0;
 }
 
-/* body .group:after {
-  visibility: hidden;
-  display: block;
-  content: "";
-  clear: both;
-  height: 0;
-} */
+@font-face {
+  font-family: Roboto;
+  src: url("assets/roboto.woff2") format("woff2");
+}
+
+* {
+  font-family: 'Roboto', 'mono-space', sans-serif;
+}
+
 
 body {
+  font-family: 'Roboto';
   background-color: #444;
-
 }
+
 a {
   color: mediumpurple;
 }
-
-/* .sidebar {
-  padding-top: 2rem;
-  grid-area: sidebar;
-  background-color: #3d3d3d;
-
-  border-right: 1px solid var(--default-border-color);
-}
-
-.content {
-  grid-area: content;
-  overflow-y: auto;
-  background-color: #2d2d2d;
-}
-
-.content-header {
-  grid-area: content;
-  overflow-y: auto;
-  background-color: #2d2d2d;
-}
-
-.header {
-  /* background: var(--white); */
-/* grid-area: header;
-  border-bottom: 1px solid var(--default-border-color);
-  align-content: center;
-}
-
-.footer {
-  grid-area: footer;
-  border-top: 1px solid var(--default-border-color);
-  align-content: center;
-  height: 0.75rem;
-} */
