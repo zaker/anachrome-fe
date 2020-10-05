@@ -27,8 +27,11 @@ a {
   color: mediumpurple;
 }
 
+#a-header{
+  font-size: 4rem;
+}
 .glitch {
-  font-size: 8rem;
+  
   font-weight: 700;
   text-transform: uppercase;
   position: relative;
