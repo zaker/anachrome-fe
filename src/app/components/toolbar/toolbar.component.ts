@@ -8,7 +8,7 @@ import { Component,  Input, Output, EventEmitter } from "@angular/core";
 export class ToolbarComponent {
   @Output() toggleSidenav = new EventEmitter();
   @Input() appName: string;
-  opened: boolean = true;
+
   constructor() {
   
   }
