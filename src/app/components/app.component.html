@@ -2,16 +2,19 @@
   <app-toolbar class="app-toolbar" [appName]="title"
   (toggleSidenav)="sidenav.toggle()"></app-toolbar>
   <mat-sidenav-container
+    fullscreen
     class="app-sidenav-container"
     [style.marginTop.px]="mobileQuery.matches ? 56 : 0"
+
   >
- 
+  
     <mat-sidenav
-      id="snav"
-      [mode]="mobileQuery.matches ? 'over' : 'side'"
+      class="app-sidenav"
+      #sidenav
+      mode="side"
       [fixedInViewport]="mobileQuery.matches"
       fixedTopGap="56"
-      opened
+      
     >
       <mat-nav-list>
         
@@ -25,7 +28,7 @@
       </mat-nav-list>
     </mat-sidenav>
 
-    <mat-sidenav-content>
+    <mat-sidenav-content class="app-content">
       <div *ngIf="blogPost">
         <h1>{{ blogPost.meta.title | uppercase }}</h1>
         <markdown [data]="blogPost.content" (ready)="blogReady()" ngPreserveWhitespaces> </markdown>
