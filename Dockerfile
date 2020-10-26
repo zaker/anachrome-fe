@@ -12,7 +12,7 @@ RUN rm -rf /src/dist
 
 RUN ng b --prod
 
-FROM zaker/http-fileserver:v0.0.2
+FROM zaker/http-fileserver:v0.0.3
 
 COPY --from=builder /src/dist /web
 WORKDIR /web
