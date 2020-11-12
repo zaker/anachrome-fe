@@ -1,7 +1,6 @@
 import {Apollo, gql} from 'apollo-angular';
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs';
-
+import {Component, OnInit, OnDestroy} from '@angular/core';
+import {Subscription} from 'rxjs';
 
 
 // We use the gql tag to parse our query string into a query document
@@ -16,13 +15,13 @@ const CurrentUserForProfile = gql`
 
 @Component({
   selector: 'app-blog',
-  templateUrl: './blog.component.html'
- })
- export class BlogComponent implements OnInit, OnDestroy {
+  templateUrl: './blog.component.html',
+})
+export class BlogComponent implements OnInit, OnDestroy {
   loading: boolean = false;
-  blogPosts?: {title:string,id:string}[];
-  blogPost?: {title:string,content:string} ;
-  blogTitle:string = "";
+  blogPosts?: {title:string, id:string}[];
+  blogPost?: {title:string, content:string} ;
+  blogTitle:string = '';
 
   private querySubscription: Subscription = new Subscription;
 
@@ -30,14 +29,14 @@ const CurrentUserForProfile = gql`
 
   ngOnInit() {
     this.querySubscription = this.apollo.watchQuery<any>({
-      query: CurrentUserForProfile
+      query: CurrentUserForProfile,
     })
-      .valueChanges
-      .subscribe(({ data, loading }) => {
-        this.loading = loading;
-        console.log(data)
-        this.blogPosts = data.blogs;
-      });
+        .valueChanges
+        .subscribe(({data, loading}) => {
+          this.loading = loading;
+          console.log(data);
+          this.blogPosts = data.blogs;
+        });
   }
 
   ngOnDestroy() {
