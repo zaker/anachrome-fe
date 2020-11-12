@@ -1,10 +1,15 @@
-import {gql, Apollo} from 'apollo-angular';
-import { Component, ChangeDetectorRef, OnDestroy, OnInit, ViewChild } from "@angular/core";
+import { gql, Apollo } from "apollo-angular";
+import {
+  Component,
+  ChangeDetectorRef,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from "@angular/core";
 import { MediaMatcher } from "@angular/cdk/layout";
 
-
 import { Subscription } from "rxjs";
-import { MatSidenav } from '@angular/material/sidenav';
+import { MatSidenav } from "@angular/material/sidenav";
 
 const GetAllBlogPosts = gql`
   query {
@@ -16,10 +21,10 @@ const GetAllBlogPosts = gql`
 `;
 
 const CurrentBlogPost = gql`
-  query  blog($id:String!){
+  query blog($id: String!) {
     blog(id: $id) {
       content
-      meta{
+      meta {
         title
         id
         published
@@ -35,18 +40,20 @@ const CurrentBlogPost = gql`
   styleUrls: ["./app.component.css"],
 })
 export class AppComponent implements OnInit, OnDestroy {
-  @ViewChild(MatSidenav) sidenav: MatSidenav;
+  @ViewChild(MatSidenav) sidenav?: MatSidenav;
   title = "Anachrome";
 
-
-  blogPosts: { title: string; id: string }[];
-  blogPost: { meta: {id:string; title: string; published:Date; updated:Date}; content: string };
+  blogPosts: { title: string; id: string }[] = [];
+  blogPost?: {
+    meta: { id: string; title: string; published: Date; updated: Date };
+    content: string;
+  };
   mobileQuery: MediaQueryList;
-  private _mobileQueryListener: () => void;
-  blogSubscription: Subscription;
-  loading: boolean;
-  blogPostSubscription: Subscription;
-  loadingBlog  :boolean;
+  mobileQueryListener: () => void;
+  blogSubscription: Subscription = new Subscription;
+  loading: boolean = false;
+  blogPostSubscription: Subscription  = new Subscription;
+  loadingBlog: boolean = false;
 
   constructor(
     changeDetectorRef: ChangeDetectorRef,
@@ -54,8 +61,7 @@ export class AppComponent implements OnInit, OnDestroy {
     private apollo: Apollo
   ) {
     this.mobileQuery = media.matchMedia("(max-width: 600px)");
-    this._mobileQueryListener = () => changeDetectorRef.detectChanges();
-    this.mobileQuery.addListener(this._mobileQueryListener);
+    this.mobileQueryListener = () => changeDetectorRef.detectChanges();
   }
 
   ngOnInit() {
@@ -75,7 +81,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   setCurrentBlogPost(id: string): void {
-    console.log(id)
+    console.log(id);
     this.apollo
       .watchQuery<any>({
         query: CurrentBlogPost,
@@ -90,11 +96,12 @@ export class AppComponent implements OnInit, OnDestroy {
       });
   }
 
-  blogReady():void{
-    this.loadingBlog =false;
+  blogReady(): void {
+    this.loadingBlog = false;
   }
   ngOnDestroy(): void {
-    this.mobileQuery.removeListener(this._mobileQueryListener);
+    // this.mobileQuery.removeListener(this._mobileQueryListener);
+
     this.blogSubscription.unsubscribe();
     this.blogPostSubscription.unsubscribe();
   }

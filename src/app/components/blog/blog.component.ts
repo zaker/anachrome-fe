@@ -19,12 +19,12 @@ const CurrentUserForProfile = gql`
   templateUrl: './blog.component.html'
  })
  export class BlogComponent implements OnInit, OnDestroy {
-  loading: boolean;
-  blogPosts: {title:string,id:string}[];
-  blogPost: {title:string,content:string};
-  blogTitle:string = "foofoo";
+  loading: boolean = false;
+  blogPosts?: {title:string,id:string}[];
+  blogPost?: {title:string,content:string} ;
+  blogTitle:string = "";
 
-  private querySubscription: Subscription;
+  private querySubscription: Subscription = new Subscription;
 
   constructor(private apollo: Apollo) {}
 

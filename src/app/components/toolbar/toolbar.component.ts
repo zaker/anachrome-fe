@@ -7,7 +7,7 @@ import { Component,  Input, Output, EventEmitter, OnInit } from "@angular/core";
 })
 export class ToolbarComponent implements OnInit {
   @Output() toggleSidenav = new EventEmitter();
-  @Input() appName: string;
+  @Input() appName: string = "";
 
   constructor() {
   
@@ -15,7 +15,6 @@ export class ToolbarComponent implements OnInit {
 
   public async ngOnInit(): Promise<void> {
 
-    console.log("init toolbar")
     this.toggleSidenav.emit()
   }
 
