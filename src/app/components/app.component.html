@@ -4,7 +4,7 @@
   <mat-sidenav-container
     fullscreen
     class="app-sidenav-container"
-    [style.marginTop.px]="mobileQuery.matches ? 56 : 0"
+    [style.marginTop.px]="mobileQuery.matches ? 56 : 52"
 
   >
   
@@ -14,6 +14,7 @@
       mode="side"
       [fixedInViewport]="mobileQuery.matches"
       fixedTopGap="56"
+      opened
       
     >
       <mat-nav-list>

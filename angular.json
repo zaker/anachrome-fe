@@ -87,7 +87,7 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
             "browserTarget": "anachrome:build",
-            "port": 4200
+            "port": 14200
           },
           "configurations": {
             "production": {
