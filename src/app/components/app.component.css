@@ -21,10 +21,13 @@
   /* Make sure the toolbar will stay on top of the content as it scrolls past. */
  
   flex:1;
+  padding-top: 1rem;
+  z-index: 1;
 
 }
 
 .app-content {
+  padding-top: 1rem;
   padding-left: 1rem; 
   flex:1;
 }
@@ -35,14 +38,13 @@
   flex: 1;
   flex-direction: row;
   height: 100%;
-  margin-top: 4rem;
 }
 
 .app-is-mobile .app-sidenav-container {
   /* When the sidenav is fixed, don't constrain the height of the sidenav container. This allows the
      `<body>` to be our scrolling element for mobile layouts. */
   flex: 1 0 auto;
-  margin-top: 2rem;
+  /* padding-top: 2rem; */
 }
 
 @media screen and (max-width: 600px) {
