@@ -30,7 +30,7 @@
     "apollo-angular": "^2.4.0",
     "core-js": "^3.9.1",
     "graphql": "^15.5.0",
-    "ngx-markdown": "^10.1.1",
+    "ngx-markdown": "^11.1.2",
     "normalize.css": "^8.0.1",
     "prismjs": "^1.23.0",
     "rxjs": "^6.6.6",
