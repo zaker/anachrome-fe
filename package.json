@@ -23,7 +23,7 @@
     "@angular/material": "^11.2.4",
     "@angular/platform-browser": "11.2.5",
     "@angular/platform-browser-dynamic": "11.2.5",
-    "@angular/pwa": "^0.1001.7",
+    "@angular/pwa": "^0.1102.4",
     "@angular/router": "11.2.5",
     "@angular/service-worker": "11.2.5",
     "@apollo/client": "^3.3.12",
@@ -35,7 +35,7 @@
     "prismjs": "^1.23.0",
     "rxjs": "^6.6.6",
     "tslib": "^2.1.0",
-    "zone.js": "^0.10.3"
+    "zone.js": "^0.11.4"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.1102.4",
@@ -49,11 +49,11 @@
     "@typescript-eslint/parser": "^4.18.0",
     "eslint": "^7.22.0",
     "eslint-config-google": "^0.14.0",
-    "eslint-config-prettier": "^7.2.0",
+    "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-prettier": "^3.3.1",
     "jasmine-core": "~3.6.0",
     "jasmine-spec-reporter": "~6.0.0",
-    "karma": "~5.2.3",
+    "karma": "~6.2.0",
     "karma-chrome-launcher": "~3.1.0",
     "karma-cli": "~2.0.0",
     "karma-coverage-istanbul-reporter": "~3.0.3",
