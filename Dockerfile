@@ -1,4 +1,4 @@
-FROM node:15.14-alpine3.13 as builder
+FROM node:16.2.0-alpine3.13 as builder
 
 WORKDIR /src
 COPY package-lock.json .
@@ -10,7 +10,7 @@ ENV PATH=$PATH:/src/node_modules/.bin
 COPY . .
 RUN rm -rf /src/dist
 
-RUN ng b --prod
+RUN ng b --configuration production
 
 FROM zaker/http-fileserver:v0.0.8
 

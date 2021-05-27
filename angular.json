@@ -56,7 +56,6 @@
           "configurations": {
             "production": {
               "outputHashing": "all",
-              "forkTypeChecker": true,
               "progress": true,
               "aot": true,
               "optimization": true,
