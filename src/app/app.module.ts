@@ -11,9 +11,9 @@ import {BlogComponent} from './components/blog/blog.component';
 import {ServiceWorkerModule} from '@angular/service-worker';
 import {environment} from '../environments/environment';
 
-
 import {MarkdownModule} from 'ngx-markdown';
 import {GraphQLModule} from './graphql.module';
+import {ApolloModule} from 'apollo-angular';
 
 @NgModule({
   declarations: [AppComponent, BlogComponent, ToolbarComponent],
@@ -23,15 +23,16 @@ import {GraphQLModule} from './graphql.module';
     FormsModule,
     HttpClientModule,
     GraphQLModule,
+    ApolloModule,
     AppMaterialsModule,
     MatNativeDateModule,
     ReactiveFormsModule,
     MarkdownModule.forRoot(),
-    ServiceWorkerModule.register('ngsw-worker.js',
-        {enabled: environment.production}),
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {
-}
+export class AppModule {}
