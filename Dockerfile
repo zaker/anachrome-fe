@@ -1,7 +1,6 @@
-FROM node:16.14.0-alpine3.15 as builder
+FROM node:16.18.0-alpine3.15 as builder
 
 WORKDIR /src
-COPY package-lock.json .
 COPY package.json .
 
 RUN npm install
