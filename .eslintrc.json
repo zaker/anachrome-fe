@@ -15,7 +15,8 @@
         "@typescript-eslint"
     ],
     "rules": {
-        "require-jsdoc":"off",
-        "new-cap":"off"
+        "require-jsdoc": "off",
+        "new-cap": "off",
+        "linebreak-style": "off"
     }
 }

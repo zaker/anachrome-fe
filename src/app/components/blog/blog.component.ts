@@ -20,7 +20,7 @@ const CurrentUserForProfile = gql`
 export class BlogComponent implements OnInit, OnDestroy {
   loading: boolean = false;
   blogPosts?: {title:string, id:string}[];
-  blogPost?: {title:string, content:string} ;
+  blogPost?: {title:string, content:string};
   blogTitle:string = '';
 
   private querySubscription: Subscription = new Subscription;
