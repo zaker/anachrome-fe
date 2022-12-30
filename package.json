@@ -66,5 +66,15 @@
   "browserslist": [
     "defaults",
     "not ie <= 11"
-  ]
+  ],
+  "overrides": {
+    "apollo-angular": {
+      "@angular/core": "^15.0.0"
+    },
+    "ngx-markdown": {
+      "@angular/common": "^15.0.0",
+      "@angular/core": "^15.0.0",
+      "@angular/platform-browser": "^15.0.0"
+    }
+  }
 }
