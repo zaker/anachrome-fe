@@ -112,3 +112,10 @@ a {
     transition-delay: 0s !important;
   }
 }
+
+@media all and (max-color: 5) {
+  .not-rdp { display: none; }
+}
+@media all and (min-color: 6) {
+  .rdp-only { display: none; }
+}
