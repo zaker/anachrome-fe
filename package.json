@@ -63,10 +63,6 @@
     "tslib": "^2.4.0",
     "typescript": "~4.8.4"
   },
-  "browserslist": [
-    "defaults",
-    "not ie <= 11"
-  ],
   "overrides": {
     "apollo-angular": {
       "@angular/core": "^15.0.0"
