@@ -2,7 +2,7 @@ FROM node:20.8.0 as builder
 
 WORKDIR /src
 COPY package.json .
-RUN npm i -g 
+RUN npm i -g npm 
 RUN npm install
 
 ENV PATH=$PATH:/src/node_modules/.bin
