@@ -1,4 +1,4 @@
-FROM node:16.18.0-alpine3.15 as builder
+FROM node:20.08.0-alpine3.17 as builder
 
 WORKDIR /src
 COPY package.json .
