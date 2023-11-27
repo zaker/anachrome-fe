@@ -1,30 +1,15 @@
 <div class="app-container" [class.app-is-mobile]="mobileQuery.matches">
-  <app-toolbar class="app-toolbar" [appName]="title"
-  (toggleSidenav)="sidenav.toggle()"></app-toolbar>
-  <mat-sidenav-container
-    fullscreen
-    class="app-sidenav-container"
-    [style.marginTop.px]="mobileQuery.matches ? 56 : 52"
-
-  >
-    <mat-sidenav
-      class="app-sidenav"
-      #sidenav
-      mode="side"
-      [fixedInViewport]="mobileQuery.matches"
-      fixedTopGap="56"
-      opened
-      
-    >
+  <app-toolbar class="app-toolbar" [appName]="title" (toggleSidenav)="sidenav.toggle()"></app-toolbar>
+  <mat-sidenav-container fullscreen class="app-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 52">
+    <mat-sidenav class="app-sidenav" #sidenav mode="side" [fixedInViewport]="mobileQuery.matches" fixedTopGap="56"
+      opened>
       <mat-nav-list>
         @for (blogPost of blogPosts; track blogPost) {
         <mat-list-item [activated]="blogPost.isActive">
-          <a matListItemTitle href="..."
-          routerLinkActive="active"
-          (click)="setCurrentBlogPost(blogPost.id)"
-          >{{ blogPost.title | uppercase }}</a
-        >
-      </mat-list-item>
+          <a matListItemTitle routerLinkActive="active" (click)="setCurrentBlogPost(blogPost.id)">{{ blogPost.title |
+            uppercase }}
+          </a>
+        </mat-list-item>
         }
       </mat-nav-list>
     </mat-sidenav>
