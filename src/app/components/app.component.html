@@ -17,14 +17,15 @@
       
     >
       <mat-nav-list>
-        
-        <a
-          mat-list-item
+        @for (blogPost of blogPosts; track blogPost) {
+        <mat-list-item [activated]="blogPost.isActive">
+          <a matListItemTitle href="..."
           routerLinkActive="active"
-          *ngFor="let blogPost of blogPosts"
           (click)="setCurrentBlogPost(blogPost.id)"
           >{{ blogPost.title | uppercase }}</a
         >
+      </mat-list-item>
+        }
       </mat-nav-list>
     </mat-sidenav>
 

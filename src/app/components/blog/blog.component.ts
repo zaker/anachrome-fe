@@ -1,5 +1,5 @@
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import {Apollo, gql} from 'apollo-angular';
-import {Component, OnInit, OnDestroy} from '@angular/core';
 import {Subscription} from 'rxjs';
 
 

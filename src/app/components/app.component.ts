@@ -1,15 +1,9 @@
 import {gql, Apollo} from 'apollo-angular';
-import {
-  Component,
-  ChangeDetectorRef,
-  OnDestroy,
-  OnInit,
-  ViewChild,
-} from '@angular/core';
 import {MediaMatcher} from '@angular/cdk/layout';
 
 import {Subscription} from 'rxjs';
 import {MatSidenav} from '@angular/material/sidenav';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 
 const GetAllBlogPosts = gql`
   query {
@@ -41,7 +35,7 @@ const CurrentBlogPost = gql`
 })
 export class AppComponent implements OnInit, OnDestroy {
   @ViewChild(MatSidenav) sidenav?: MatSidenav;
-  title = 'Anachrome';
+  title = 'nachrome';
 
   blogPosts: { title: string; id: string }[] = [];
   blogPost?: {
