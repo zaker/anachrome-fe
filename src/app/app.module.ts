@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatNativeDateModule } from '@angular/material/core';
@@ -19,25 +19,20 @@ import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
-  declarations: [AppComponent, BlogComponent, ToolbarComponent],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    FormsModule,
-    HttpClientModule,
-    GraphQLModule,
-    ApolloModule,
-    AppMaterialsModule,
-    MatIconModule,
-    MatNativeDateModule,
-    MatListModule,
-    ReactiveFormsModule,
-    MarkdownModule.forRoot(),
-    ServiceWorkerModule.register('ngsw-worker.js', {
-      enabled: environment.production,
-    }),
-  ],
-  providers: [],
-  bootstrap: [AppComponent],
+    declarations: [AppComponent, BlogComponent, ToolbarComponent],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        BrowserAnimationsModule,
+        FormsModule,
+        GraphQLModule,
+        ApolloModule,
+        AppMaterialsModule,
+        MatIconModule,
+        MatNativeDateModule,
+        MatListModule,
+        ReactiveFormsModule,
+        MarkdownModule.forRoot(),
+        ServiceWorkerModule.register('ngsw-worker.js', {
+            enabled: environment.production,
+        })], providers: [provideHttpClient(withInterceptorsFromDi())]
 })
 export class AppModule { }
