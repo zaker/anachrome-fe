@@ -94,15 +94,15 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "anachrome:build",
+            "buildTarget": "anachrome:build",
             "port": 14200
           },
           "configurations": {
             "production": {
-              "browserTarget": "anachrome:build:production"
+              "buildTarget": "anachrome:build:production"
             },
             "development": {
-              "browserTarget": "anachrome:build:development"
+              "buildTarget": "anachrome:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -110,7 +110,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "anachrome:build"
+            "buildTarget": "anachrome:build"
           }
         },
         "test": {
