@@ -5,7 +5,16 @@ import { Subscription } from 'rxjs';
 import { MatSidenav } from '@angular/material/sidenav';
 import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 
-const GetAllBlogPosts = gql`
+
+type BlogsResult = {
+  blogs: {
+    id:string,
+    title:string,
+    isActive:boolean,
+  }[]
+}
+
+const GetAllBlogPosts = gql<BlogsResult,any>`
   query {
     blogs {
       title
@@ -13,8 +22,21 @@ const GetAllBlogPosts = gql`
     }
   }
 `;
-
-const CurrentBlogPost = gql`
+type BlogPostResult = {
+  blog: {
+    content:string,
+    meta:{
+      id:string,
+      title:string,
+      published:Date,
+      updated:Date,
+    }
+  }
+}
+type BlogPostArgs = {
+  id:string
+}
+const BlogPostQuery = gql<BlogPostResult,BlogPostArgs>`
   query blog($id: String!) {
     blog(id: $id) {
       content
@@ -61,7 +83,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.blogSubscription = this.apollo
-      .watchQuery<any>({
+      .watchQuery({
         query: GetAllBlogPosts,
       })
       .valueChanges.subscribe(({ data, loading }) => {
@@ -76,8 +98,8 @@ export class AppComponent implements OnInit, OnDestroy {
 
   setCurrentBlogPost(id: string): void {
     this.apollo
-      .watchQuery<any>({
-        query: CurrentBlogPost,
+      .watchQuery({
+        query: BlogPostQuery,
         variables: {
           id: id,
         },

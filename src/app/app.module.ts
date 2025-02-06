@@ -13,7 +13,6 @@ import { environment } from '../environments/environment';
 
 import { MarkdownModule } from 'ngx-markdown';
 import { GraphQLModule } from './graphql.module';
-import { ApolloModule } from 'apollo-angular';
 import { NgModule } from '@angular/core';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
@@ -24,7 +23,6 @@ import { MatIconModule } from '@angular/material/icon';
         BrowserAnimationsModule,
         FormsModule,
         GraphQLModule,
-        ApolloModule,
         AppMaterialsModule,
         MatIconModule,
         MatNativeDateModule,

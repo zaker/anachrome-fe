@@ -1,23 +1,25 @@
-import {NgModule} from '@angular/core';
-import {APOLLO_OPTIONS} from 'apollo-angular';
-import {ApolloClientOptions, InMemoryCache} from '@apollo/client/core';
-import {HttpLink} from 'apollo-angular/http';
+import { NgModule, inject } from '@angular/core';
+import { provideApollo } from 'apollo-angular';
+import { ApolloClientOptions, InMemoryCache } from '@apollo/client/core';
+import { HttpLink } from 'apollo-angular/http';
+import { provideHttpClient } from '@angular/common/http';
 
 const uri = 'https://anachro.me/api/gql';
-export function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
-  return {
-    link: httpLink.create({uri}),
-    cache: new InMemoryCache(),
-  };
-}
+
 
 @NgModule({
   providers: [
-    {
-      provide: APOLLO_OPTIONS,
-      useFactory: createApollo,
-      deps: [HttpLink],
-    },
+    provideHttpClient(),
+    provideApollo(() => {
+      const httpLink = inject(HttpLink);
+      // provide: APOLLO_OPTIONS,
+      // useFactory: createApollo,
+      // deps: [HttpLink],
+      return {
+        link: httpLink.create({ uri: uri }),
+        cache: new InMemoryCache(),
+      };
+    })
   ],
 })
-export class GraphQLModule {}
+export class GraphQLModule { }

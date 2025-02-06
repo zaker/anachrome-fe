@@ -2,9 +2,15 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import {Apollo, gql} from 'apollo-angular';
 import {Subscription} from 'rxjs';
 
+type BlogsResult = {
+  blogs: {
+    id:string,
+    title:string
+  }[]
+}
 
 // We use the gql tag to parse our query string into a query document
-const CurrentUserForProfile = gql`
+const BlogsQuery = gql<BlogsResult,any>`
   query  {
     blogs {
       title
@@ -29,8 +35,8 @@ export class BlogComponent implements OnInit, OnDestroy {
   constructor(private apollo: Apollo) {}
 
   ngOnInit() {
-    this.querySubscription = this.apollo.watchQuery<any>({
-      query: CurrentUserForProfile,
+    this.querySubscription = this.apollo.watchQuery({
+      query: BlogsQuery,
     })
         .valueChanges
         .subscribe(({data, loading}) => {
