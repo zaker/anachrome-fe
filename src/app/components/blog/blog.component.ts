@@ -14,8 +14,9 @@ const CurrentUserForProfile = gql`
 `;
 
 @Component({
-  selector: 'app-blog',
-  templateUrl: './blog.component.html',
+    selector: 'app-blog',
+    templateUrl: './blog.component.html',
+    standalone: false
 })
 export class BlogComponent implements OnInit, OnDestroy {
   loading: boolean = false;
