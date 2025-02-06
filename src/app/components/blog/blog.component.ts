@@ -35,7 +35,6 @@ export class BlogComponent implements OnInit, OnDestroy {
         .valueChanges
         .subscribe(({data, loading}) => {
           this.loading = loading;
-          console.log(data);
           this.blogPosts = data.blogs;
         });
   }

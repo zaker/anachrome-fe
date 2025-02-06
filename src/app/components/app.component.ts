@@ -66,7 +66,6 @@ export class AppComponent implements OnInit, OnDestroy {
       })
       .valueChanges.subscribe(({ data, loading }) => {
         this.loading = loading;
-        console.log(data);
         this.blogPosts = data.blogs;
 
         if (this.blogPosts && this.blogPosts.length > 0) {
@@ -76,7 +75,6 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   setCurrentBlogPost(id: string): void {
-    console.log(id);
     this.apollo
       .watchQuery<any>({
         query: CurrentBlogPost,
@@ -86,7 +84,6 @@ export class AppComponent implements OnInit, OnDestroy {
       })
       .valueChanges.subscribe(({ data, loading }) => {
         this.loadingBlog = loading;
-        console.log(data);
         this.blogPost = data.blog;
       });
   }
