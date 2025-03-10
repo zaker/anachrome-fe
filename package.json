@@ -30,7 +30,7 @@
     "graphql": "^16.10.0",
     "ngx-markdown": "^19.0.0",
     "normalize.css": "^8.0.1",
-    "prismjs": "^1.29.0",
+    "prismjs": "^1.30.0",
     "rxjs": "^7.8.1",
     "zone.js": "~0.15.0"
   },
