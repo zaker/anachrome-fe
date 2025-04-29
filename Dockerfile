@@ -1,4 +1,4 @@
-FROM node:20.18.0 as builder
+FROM node:23.11.0-slim AS builder
 
 WORKDIR /src
 COPY package.json .
@@ -16,3 +16,4 @@ FROM zaker/http-fileserver:v0.0.8
 COPY --from=builder /src/dist /web
 WORKDIR /web
 
+EXPOSE 4500
