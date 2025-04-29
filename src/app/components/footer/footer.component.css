@@ -1,0 +1,16 @@
+ul {
+  display: flex;
+  list-style: none;
+  justify-content: center;
+  margin: 0.2em;
+  padding: 0.2em;
+}
+
+li {
+
+
+  margin-right: 3em;
+  padding-top: 0px;
+
+  text-transform: capitalize;
+}

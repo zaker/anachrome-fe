@@ -19,9 +19,11 @@
 
 
 body {
-  font-family: 'Roboto';
+
   background-color: #444;
 }
+
+
 
 a {
   color: mediumpurple;
@@ -29,7 +31,7 @@ a {
 
 
 .glitch {
-  
+
   font-weight: 700;
   text-transform: uppercase;
   position: relative;

@@ -1,26 +1,27 @@
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatNativeDateModule } from '@angular/material/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './components/app.component';
 import { AppMaterialsModule } from './app.materials.module';
-import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { BlogComponent } from './components/blog/blog.component';
-import { ServiceWorkerModule } from '@angular/service-worker';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserModule } from '@angular/platform-browser';
 import { environment } from '../environments/environment';
-
-import { MarkdownModule } from 'ngx-markdown';
+import { FooterComponent } from './components/footer/footer.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GraphQLModule } from './graphql.module';
-import { NgModule } from '@angular/core';
-import { MatListModule } from '@angular/material/list';
+import { MarkdownModule } from 'ngx-markdown';
 import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { MatNativeDateModule } from '@angular/material/core';
+import { NgModule } from '@angular/core';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { ToolbarComponent } from './components/toolbar/toolbar.component';
 
 @NgModule({
     declarations: [AppComponent, BlogComponent, ToolbarComponent],
     bootstrap: [AppComponent], imports: [BrowserModule,
         BrowserAnimationsModule,
+        FooterComponent,
         FormsModule,
         GraphQLModule,
         AppMaterialsModule,
