@@ -5,20 +5,22 @@
       opened>
       <mat-nav-list>
         @for (blogPost of blogPosts; track blogPost) {
-        <mat-list-item [activated]="blogPost.isActive">
-          <a matListItemTitle routerLinkActive="active" (click)="setCurrentBlogPost(blogPost.id)">{{ blogPost.title |
-            uppercase }}
-          </a>
-        </mat-list-item>
+          <mat-list-item [activated]="blogPost.isActive">
+            <a matListItemTitle routerLinkActive="active" (click)="setCurrentBlogPost(blogPost.id)">{{ blogPost.title |
+              uppercase }}
+            </a>
+          </mat-list-item>
         }
       </mat-nav-list>
     </mat-sidenav>
 
     <mat-sidenav-content class="app-content">
-      <div *ngIf="blogPost">
-        <h1>{{ blogPost.meta.title | uppercase }}</h1>
-        <markdown [data]="blogPost.content" (ready)="blogReady()" ngPreserveWhitespaces> </markdown>
-      </div>
+      @if (blogPost) {
+        <div>
+          <h1>{{ blogPost.meta.title | uppercase }}</h1>
+          <markdown [data]="blogPost.content" (ready)="blogReady()" ngPreserveWhitespaces> </markdown>
+        </div>
+      }
     </mat-sidenav-content>
   </mat-sidenav-container>
   <app-footer class="app-footer"></app-footer>

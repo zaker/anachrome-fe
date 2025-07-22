@@ -1,5 +1,11 @@
-<div class="wrapper" *ngIf="blogPosts">
-  <li *ngFor="let post of blogPosts; index as i; first as isFirst">
-    {{i+1}}/{{blogPosts.length}}. {{post.title}} - {{post.id}} <span *ngIf="isFirst">default</span>
-  </li>
+@if (blogPosts) {
+  <div class="wrapper">
+    @for (post of blogPosts; track post; let i = $index; let isFirst = $first) {
+      <li>
+        {{i+1}}/{{blogPosts.length}}. {{post.title}} - {{post.id}} @if (isFirst) {
+        <span>default</span>
+      }
+    </li>
+  }
 </div>
+}
