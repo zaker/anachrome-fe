@@ -3,9 +3,10 @@
   "compilerOptions": {
     "outDir": "../out-tsc/app",
     "baseUrl": "./",
-    "module": "es2015",
     "sourceMap": true,
-    "types": []
+    "types": [],
+    "esModuleInterop": true,
+    "moduleResolution": "bundler"
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true

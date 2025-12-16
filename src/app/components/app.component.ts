@@ -1,4 +1,4 @@
-import { gql, Apollo } from 'apollo-angular';
+import { gql, Apollo, onlyCompleteData } from 'apollo-angular';
 import { MediaMatcher } from '@angular/cdk/layout';
 
 import { Subscription } from 'rxjs';
@@ -8,13 +8,13 @@ import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@ang
 
 type BlogsResult = {
   blogs: {
-    id:string,
-    title:string,
-    isActive:boolean,
+    id: string,
+    title: string,
+    isActive: boolean,
   }[]
 }
 
-const GetAllBlogPosts = gql<BlogsResult,any>`
+const GetAllBlogPosts = gql<BlogsResult, any>`
   query {
     blogs {
       title
@@ -24,19 +24,19 @@ const GetAllBlogPosts = gql<BlogsResult,any>`
 `;
 type BlogPostResult = {
   blog: {
-    content:string,
-    meta:{
-      id:string,
-      title:string,
-      published:Date,
-      updated:Date,
+    content: string,
+    meta: {
+      id: string,
+      title: string,
+      published: Date,
+      updated: Date,
     }
   }
 }
 type BlogPostArgs = {
-  id:string
+  id: string
 }
-const BlogPostQuery = gql<BlogPostResult,BlogPostArgs>`
+const BlogPostQuery = gql<BlogPostResult, BlogPostArgs>`
   query blog($id: String!) {
     blog(id: $id) {
       content
@@ -51,10 +51,10 @@ const BlogPostQuery = gql<BlogPostResult,BlogPostArgs>`
 `;
 
 @Component({
-    selector: 'app-root',
-    templateUrl: './app.component.html',
-    styleUrls: ['./app.component.css'],
-    standalone: false
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css'],
+  standalone: false
 })
 export class AppComponent implements OnInit, OnDestroy {
   @ViewChild(MatSidenav) sidenav?: MatSidenav;
@@ -86,7 +86,9 @@ export class AppComponent implements OnInit, OnDestroy {
       .watchQuery({
         query: GetAllBlogPosts,
       })
-      .valueChanges.subscribe(({ data, loading }) => {
+      .valueChanges
+      .pipe(onlyCompleteData())
+      .subscribe(({ data, loading }) => {
         this.loading = loading;
         this.blogPosts = data.blogs;
 
@@ -104,8 +106,13 @@ export class AppComponent implements OnInit, OnDestroy {
           id: id,
         },
       })
-      .valueChanges.subscribe(({ data, loading }) => {
+      .valueChanges
+      .pipe(onlyCompleteData())
+      .subscribe(({ data, loading }) => {
         this.loadingBlog = loading;
+        if (data === undefined) {
+          return;
+        }
         this.blogPost = data.blog;
       });
   }
