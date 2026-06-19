@@ -1,15 +1,14 @@
-import { NgModule, inject } from '@angular/core';
-import { provideApollo } from 'apollo-angular';
-import { ApolloClientOptions, InMemoryCache } from '@apollo/client/core';
-import { HttpLink } from 'apollo-angular/http';
-import { provideHttpClient } from '@angular/common/http';
+import { NgModule, inject } from "@angular/core";
+import { provideApollo } from "apollo-angular";
+import { ApolloClientOptions, InMemoryCache } from "@apollo/client/core";
+import { HttpLink } from "apollo-angular/http";
+import { provideHttpClient, withXhr } from "@angular/common/http";
 
-const uri = 'https://anachro.me/api/gql';
-
+const uri = "https://anachro.me/api/gql";
 
 @NgModule({
   providers: [
-    provideHttpClient(),
+    provideHttpClient(withXhr()),
     provideApollo(() => {
       const httpLink = inject(HttpLink);
       // provide: APOLLO_OPTIONS,
@@ -19,7 +18,7 @@ const uri = 'https://anachro.me/api/gql';
         link: httpLink.create({ uri: uri }),
         cache: new InMemoryCache(),
       };
-    })
+    }),
   ],
 })
-export class GraphQLModule { }
+export class GraphQLModule {}

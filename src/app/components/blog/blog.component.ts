@@ -1,17 +1,22 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Apollo, gql, onlyCompleteData } from 'apollo-angular';
-import { Subscription } from 'rxjs';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  ChangeDetectionStrategy,
+} from "@angular/core";
+import { Apollo, gql, onlyCompleteData } from "apollo-angular";
+import { Subscription } from "rxjs";
 
 type BlogsResult = {
   blogs: {
-    id: string,
-    title: string
-  }[]
-}
+    id: string;
+    title: string;
+  }[];
+};
 
 // We use the gql tag to parse our query string into a query document
 const BlogsQuery = gql<BlogsResult, any>`
-  query  {
+  query {
     blogs {
       title
       id
@@ -20,26 +25,27 @@ const BlogsQuery = gql<BlogsResult, any>`
 `;
 
 @Component({
-  selector: 'app-blog',
-  templateUrl: './blog.component.html',
-  standalone: false
+  selector: "app-blog",
+  templateUrl: "./blog.component.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class BlogComponent implements OnInit, OnDestroy {
   loading: boolean = false;
-  blogPosts?: { title: string, id: string }[];
-  blogPost?: { title: string, content: string };
-  blogTitle: string = '';
+  blogPosts?: { title: string; id: string }[];
+  blogPost?: { title: string; content: string };
+  blogTitle: string = "";
 
-  private querySubscription: Subscription = new Subscription;
+  private querySubscription: Subscription = new Subscription();
 
-  constructor(private apollo: Apollo) { }
+  constructor(private apollo: Apollo) {}
 
   ngOnInit() {
-    this.querySubscription = this.apollo.watchQuery({
-      query: BlogsQuery,
-    })
-      .valueChanges
-      .pipe(onlyCompleteData())
+    this.querySubscription = this.apollo
+      .watchQuery({
+        query: BlogsQuery,
+      })
+      .valueChanges.pipe(onlyCompleteData())
       .subscribe(({ data, loading }) => {
         this.loading = loading;
         this.blogPosts = data.blogs;

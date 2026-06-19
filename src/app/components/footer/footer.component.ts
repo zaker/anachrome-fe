@@ -1,9 +1,8 @@
-import { Component,inject } from '@angular/core';
-import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
-import { DomSanitizer } from '@angular/platform-browser';
+import { Component, inject, ChangeDetectionStrategy } from "@angular/core";
+import { MatIconModule, MatIconRegistry } from "@angular/material/icon";
+import { DomSanitizer } from "@angular/platform-browser";
 
-const MAIL_ICON =
-  `
+const MAIL_ICON = `
 <svg height="800px" width="800px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
 	 viewBox="0 0 75.294 75.294" xml:space="preserve">
 <g>
@@ -17,8 +16,7 @@ const MAIL_ICON =
 </g>
 </svg>
 `;
-const GITHUB_ICON =
-  `
+const GITHUB_ICON = `
 <svg width="800px" height="800px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
   <title>github</title>
   <rect width="24" height="24" fill="none"/>
@@ -27,17 +25,25 @@ const GITHUB_ICON =
 `;
 
 @Component({
-  selector: 'app-footer',
+  selector: "app-footer",
   imports: [MatIconModule],
-  templateUrl: './footer.component.html',
-  styleUrl: './footer.component.css'
+  templateUrl: "./footer.component.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
+  styleUrl: "./footer.component.css",
 })
 export class FooterComponent {
-  constructor(private iconRegistry: MatIconRegistry, private sanitizer: DomSanitizer) {
+  constructor(
+    private iconRegistry: MatIconRegistry,
+    private sanitizer: DomSanitizer,
+  ) {
+    iconRegistry.addSvgIconLiteral(
+      "mail",
+      sanitizer.bypassSecurityTrustHtml(MAIL_ICON),
+    );
 
-
-    iconRegistry.addSvgIconLiteral('mail', sanitizer.bypassSecurityTrustHtml(MAIL_ICON));
-
-    iconRegistry.addSvgIconLiteral('github', sanitizer.bypassSecurityTrustHtml(GITHUB_ICON));
+    iconRegistry.addSvgIconLiteral(
+      "github",
+      sanitizer.bypassSecurityTrustHtml(GITHUB_ICON),
+    );
   }
 }

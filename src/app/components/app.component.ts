@@ -1,18 +1,24 @@
-import { gql, Apollo, onlyCompleteData } from 'apollo-angular';
-import { MediaMatcher } from '@angular/cdk/layout';
+import { gql, Apollo, onlyCompleteData } from "apollo-angular";
+import { MediaMatcher } from "@angular/cdk/layout";
 
-import { Subscription } from 'rxjs';
-import { MatSidenav } from '@angular/material/sidenav';
-import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-
+import { Subscription } from "rxjs";
+import { MatSidenav } from "@angular/material/sidenav";
+import {
+  ChangeDetectorRef,
+  Component,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+  ChangeDetectionStrategy,
+} from "@angular/core";
 
 type BlogsResult = {
   blogs: {
-    id: string,
-    title: string,
-    isActive: boolean,
-  }[]
-}
+    id: string;
+    title: string;
+    isActive: boolean;
+  }[];
+};
 
 const GetAllBlogPosts = gql<BlogsResult, any>`
   query {
@@ -24,18 +30,18 @@ const GetAllBlogPosts = gql<BlogsResult, any>`
 `;
 type BlogPostResult = {
   blog: {
-    content: string,
+    content: string;
     meta: {
-      id: string,
-      title: string,
-      published: Date,
-      updated: Date,
-    }
-  }
-}
+      id: string;
+      title: string;
+      published: Date;
+      updated: Date;
+    };
+  };
+};
 type BlogPostArgs = {
-  id: string
-}
+  id: string;
+};
 const BlogPostQuery = gql<BlogPostResult, BlogPostArgs>`
   query blog($id: String!) {
     blog(id: $id) {
@@ -51,14 +57,15 @@ const BlogPostQuery = gql<BlogPostResult, BlogPostArgs>`
 `;
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
-  standalone: false
+  selector: "app-root",
+  templateUrl: "./app.component.html",
+  styleUrls: ["./app.component.css"],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class AppComponent implements OnInit, OnDestroy {
   @ViewChild(MatSidenav) sidenav?: MatSidenav;
-  title = 'nachrome';
+  title = "nachrome";
 
   blogPosts: { title: string; id: string; isActive: boolean }[] = [];
   blogPost?: {
@@ -77,7 +84,7 @@ export class AppComponent implements OnInit, OnDestroy {
     media: MediaMatcher,
     private apollo: Apollo,
   ) {
-    this.mobileQuery = media.matchMedia('(max-width: 600px)');
+    this.mobileQuery = media.matchMedia("(max-width: 600px)");
     this.mobileQueryListener = () => changeDetectorRef.detectChanges();
   }
 
@@ -86,8 +93,7 @@ export class AppComponent implements OnInit, OnDestroy {
       .watchQuery({
         query: GetAllBlogPosts,
       })
-      .valueChanges
-      .pipe(onlyCompleteData())
+      .valueChanges.pipe(onlyCompleteData())
       .subscribe(({ data, loading }) => {
         this.loading = loading;
         this.blogPosts = data.blogs;
@@ -106,8 +112,7 @@ export class AppComponent implements OnInit, OnDestroy {
           id: id,
         },
       })
-      .valueChanges
-      .pipe(onlyCompleteData())
+      .valueChanges.pipe(onlyCompleteData())
       .subscribe(({ data, loading }) => {
         this.loadingBlog = loading;
         if (data === undefined) {

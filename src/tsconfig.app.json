@@ -9,11 +9,13 @@
     "moduleResolution": "bundler"
   },
   "angularCompilerOptions": {
-    "fullTemplateTypeCheck": true
+    "fullTemplateTypeCheck": true,
+    "extendedDiagnostics": {
+      "checks": {
+        "nullishCoalescingNotNullable": "suppress",
+        "optionalChainNotNullable": "suppress"
+      }
+    }
   },
-  "exclude": [
-    "test.ts",
-    "**/*.spec.ts",
-    "polyfills.dev.ts"
-  ]
+  "exclude": ["test.ts", "**/*.spec.ts", "polyfills.dev.ts"]
 }
