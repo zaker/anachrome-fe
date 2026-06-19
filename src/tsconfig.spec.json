@@ -2,7 +2,6 @@
   "extends": "../tsconfig.base.json",
   "compilerOptions": {
     "outDir": "../out-tsc/spec",
-    "baseUrl": "./",
     "target": "es2022",
     "types": ["jasmine", "node"],
     "esModuleInterop": true,
