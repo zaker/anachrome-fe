@@ -6,6 +6,7 @@ import {
   Input,
   ChangeDetectionStrategy,
 } from "@angular/core";
+import { MatButtonModule } from "@angular/material/button";
 import { MatIconRegistry, MatIcon } from "@angular/material/icon";
 import { MatToolbar } from "@angular/material/toolbar";
 import { DomSanitizer } from "@angular/platform-browser";
@@ -18,8 +19,10 @@ const ANACHROME_ICON =
   templateUrl: "./toolbar.component.html",
   styleUrls: ["./toolbar.component.css"],
   changeDetection: ChangeDetectionStrategy.Eager,
-    imports: [ MatToolbar,
+    imports: [
+      MatToolbar,
       MatIcon,
+      MatButtonModule,
     ],
   standalone: true,
 })

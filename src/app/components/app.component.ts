@@ -67,7 +67,6 @@ const BlogPostQuery = gql<BlogPostResult, BlogPostArgs>`
   styleUrls: ["./app.component.css"],
   imports: [
     MarkdownComponent,
-    MarkdownPipe,
     FooterComponent,
     ToolbarComponent,
     MatSidenav,

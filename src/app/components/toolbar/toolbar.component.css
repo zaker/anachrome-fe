@@ -1,17 +1,25 @@
-.toolbar {
-  align-self: start;
+.toolbar-icon {
+  height: 100%;
+  font-size: 0em;
 }
 
-.app-menu-button{
-  height:100px;
+.mat-mdc-button {
+  height: 100%;
 }
 
-.app-name{
-  font-size: 4rem;
+
+#appIcon {
+  width: 100%;
+  height: 100%;
+  font-size: 0rem;
+}
+
+.app-name {
+  font-size: 5rem;
 }
 
 @media screen and (max-width: 600px) {
-  .app-name{
+  .app-name {
     font-size: 2rem;
   }
 }
