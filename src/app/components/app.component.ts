@@ -1,8 +1,9 @@
 import { gql, Apollo, onlyCompleteData } from "apollo-angular";
 import { MediaMatcher } from "@angular/cdk/layout";
+import { MatListItem, MatNavList } from "@angular/material/list";
 
 import { Subscription } from "rxjs";
-import { MatSidenav } from "@angular/material/sidenav";
+import { MatSidenav, MatSidenavContainer, MatSidenavContent } from "@angular/material/sidenav";
 import {
   ChangeDetectorRef,
   Component,
@@ -11,7 +12,10 @@ import {
   ViewChild,
   ChangeDetectionStrategy,
 } from "@angular/core";
-import { MarkdownComponent, MarkdownPipe } from "ngx-markdown";
+import { MarkdownComponent, MarkdownPipe, MarkdownService } from "ngx-markdown";
+import { ToolbarComponent } from "./toolbar/toolbar.component";
+import { FooterComponent } from "./footer/footer.component";
+import { UpperCasePipe } from "@angular/common";
 
 type BlogsResult = {
   blogs: {
@@ -61,9 +65,20 @@ const BlogPostQuery = gql<BlogPostResult, BlogPostArgs>`
   selector: "app-root",
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.css"],
-  imports: [MarkdownComponent,MarkdownPipe],
+  imports: [
+    MarkdownComponent,
+    MarkdownPipe,
+    FooterComponent,
+    ToolbarComponent,
+    MatSidenav,
+    MatSidenavContainer,
+    MatSidenavContent,
+    MatNavList,
+    MatListItem,
+    UpperCasePipe
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
-  standalone: false,
+  standalone: true,
 })
 export class AppComponent implements OnInit, OnDestroy {
   @ViewChild(MatSidenav) sidenav?: MatSidenav;

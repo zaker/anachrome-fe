@@ -6,7 +6,8 @@ import {
   Input,
   ChangeDetectionStrategy,
 } from "@angular/core";
-import { MatIconRegistry } from "@angular/material/icon";
+import { MatIconRegistry, MatIcon } from "@angular/material/icon";
+import { MatToolbar } from "@angular/material/toolbar";
 import { DomSanitizer } from "@angular/platform-browser";
 
 const ANACHROME_ICON =
@@ -17,7 +18,10 @@ const ANACHROME_ICON =
   templateUrl: "./toolbar.component.html",
   styleUrls: ["./toolbar.component.css"],
   changeDetection: ChangeDetectionStrategy.Eager,
-  standalone: false,
+    imports: [ MatToolbar,
+      MatIcon,
+    ],
+  standalone: true,
 })
 export class ToolbarComponent implements OnInit {
   @Output() toggleSidenav = new EventEmitter();
