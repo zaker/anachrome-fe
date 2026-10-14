@@ -18,7 +18,10 @@
       @if (blogPost) {
         <div>
           <h1>{{ blogPost.meta.title | uppercase }}</h1>
-          <markdown [data]="blogPost.content" (ready)="blogReady()" ngPreserveWhitespaces> </markdown>
+          <markdown
+          [data]="blogPost.content"
+          (ready)="blogReady()"
+          ngPreserveWhitespaces> </markdown>
         </div>
       }
     </mat-sidenav-content>

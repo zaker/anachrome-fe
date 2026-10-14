@@ -11,6 +11,7 @@ import {
   ViewChild,
   ChangeDetectionStrategy,
 } from "@angular/core";
+import { MarkdownComponent, MarkdownPipe } from "ngx-markdown";
 
 type BlogsResult = {
   blogs: {
@@ -60,6 +61,7 @@ const BlogPostQuery = gql<BlogPostResult, BlogPostArgs>`
   selector: "app-root",
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.css"],
+  imports: [MarkdownComponent,MarkdownPipe],
   changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
