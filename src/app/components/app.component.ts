@@ -25,7 +25,7 @@ type BlogsResult = {
   }[];
 };
 
-const GetAllBlogPosts = gql<BlogsResult, any>`
+const GetAllBlogPosts = gql<BlogsResult, undefined>`
   query {
     blogs {
       title
