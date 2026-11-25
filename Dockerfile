@@ -1,4 +1,4 @@
-FROM node:26-slim AS builder
+FROM node:26-slim AS web-builder
 
 WORKDIR /src
 COPY package.json .
@@ -12,20 +12,20 @@ RUN mkdir /src/dist
 RUN ng build --configuration production
 
 
-FROM golang:alpine AS build
+FROM golang:1.27 AS server-build
 
-RUN apk add --no-cache curl
 ARG HTTP_FS_REF=main
 WORKDIR /src
 RUN curl --fail --location --silent --show-error \
     "https://github.com/zaker/http-fs/archive/${HTTP_FS_REF}.tar.gz" -o /tmp/source.tar.gz \
     && tar -xzf /tmp/source.tar.gz --strip-components=1 -C /src \
     && rm -rf /tmp/source.tar.gz /src/static
-COPY --from=builder /src/dist/browser ./static/
+COPY --from=web-builder /src/dist/browser ./static/
 RUN CGO_ENABLED=0 go build -trimpath -o /http-fs .
 
+
 FROM scratch
-COPY --from=build /http-fs /http-fs
+COPY --from=server-build /http-fs /http-fs
 USER 65532:65532
 EXPOSE 4500
 ENTRYPOINT ["/http-fs","-addr",":4500"]
