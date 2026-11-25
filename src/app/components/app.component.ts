@@ -96,12 +96,12 @@ export class AppComponent implements OnInit, OnDestroy {
   loadingBlog: boolean = false;
 
   constructor(
-    changeDetectorRef: ChangeDetectorRef,
+    private changeDetectorRef: ChangeDetectorRef,
     media: MediaMatcher,
     private apollo: Apollo,
   ) {
     this.mobileQuery = media.matchMedia("(max-width: 600px)");
-    this.mobileQueryListener = () => changeDetectorRef.detectChanges();
+    this.mobileQueryListener = () => this.changeDetectorRef.detectChanges();
   }
 
   ngOnInit() {
@@ -113,6 +113,7 @@ export class AppComponent implements OnInit, OnDestroy {
       .subscribe(({ data, loading }) => {
         this.loading = loading;
         this.blogPosts = data.blogs;
+        this.changeDetectorRef.markForCheck();
 
         if (this.blogPosts && this.blogPosts.length > 0) {
           this.setCurrentBlogPost(this.blogPosts[0].id);
@@ -135,6 +136,7 @@ export class AppComponent implements OnInit, OnDestroy {
           return;
         }
         this.blogPost = data.blog;
+        this.changeDetectorRef.markForCheck();
       });
   }
 

@@ -12,7 +12,7 @@ RUN mkdir /src/dist
 RUN ng b --configuration production
 
 
-FROM golang:1.26 AS build
+FROM golang:alpine AS build
 
 ARG HTTP_FS_REF=main
 WORKDIR /src
