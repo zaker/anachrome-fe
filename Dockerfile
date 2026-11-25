@@ -9,11 +9,12 @@ ENV PATH=$PATH:/src/node_modules/.bin
 COPY . .
 RUN rm -rf /src/dist
 RUN mkdir /src/dist
-RUN ng b --configuration production
+RUN ng build --configuration production
 
 
 FROM golang:alpine AS build
 
+RUN apk add --no-cache curl
 ARG HTTP_FS_REF=main
 WORKDIR /src
 RUN curl --fail --location --silent --show-error \
